@@ -225,14 +225,9 @@ FROM revenue_permonth;
 
 Q7: Ship Mode Analysis? 
 
-Insight 7: 
+Insight 7:
 
-The profit margin of each ship mode is not that different it is actually what it should be standard class is most used having 5968 numbers because people prefer standard ship mode to avoid extra charges, so the profit margin 12.11% is little different from other ship mode but it is not dramatically different. First Class having 1538 numbers is the most profitable shipping mode margin of  13.8% because it attracts less price sensitive customers who receive fewer discounts the average discount a First class ship mode gets  is 0.25 .  
-
-Same day and Second class gets the same average discount for Same day average discount 0.46 and for Second class 0.45 and their profit margin is not that different either for Same day profit margin is 12.63% and for Second class is 12.43%. 
-
-Since ship mode has minimal impact on profit margins, the business should redirect its focus toward higher-impact areas such as reducing discounting in loss-making sub-categories and the Central region. 
-
+Shipping mode has minimal impact on profit margin — all four modes fall between 12.1% and 13.8%. First Class has the best margin (13.8%) because those customers are less price-sensitive and receive fewer discounts (avg 0.25 vs 0.45+ for others). Since shipping mode is not a major profit driver, the business should focus on higher-impact issues — discounting in loss-making sub-categories and the Central region.
  
 
 SELECT `Ship Mode`, 
@@ -261,9 +256,7 @@ Q8: Loss-Making States?
 
 Insight 8: 
 
-As  we checked in insight 1 central in our least profit generating region but what interesting insight we  get from this loss-making state insight is even if they are the least profit making region they have only 2 states that is giving us negative profit Illinois revenue is $79.5K but losses -$12K of profit margin of profit is -15.11% and Texas revenue is $172K but losses –$25K of profit margin of profit is -14.83% compare to other Regions having 3 states where we are losing profit that mean even if they are giving us the least profit they are not the only one affecting our profit. 
-
-The business should conduct an urgent state-level discount audit, prioritizing Texas and Ohio which represent the largest absolute losses. Simply reducing discounting in these states could potentially recover tens of thousands in lost profit. 
+Central has the worst regional margin but only 2 loss-making states. Other regions have 3. Texas having revenue of $172K but losses –$25K with the profit margin of -14.83% and for Illinois the revenue is  $79.5K but losses -$12K with the profit margin of -15.11%. If we compare them with other Regions who have 3 states where we are losing profit like West and South that simply mean they are giving us the least profit they are not the only one affecting our profit. The business should conduct an urgent state-level discount audit, prioritizing Texas and Ohio which represent the largest absolute losses. Simply reducing discounting in these states could potentially recover tens of thousands in lost profit.
 
  
 
