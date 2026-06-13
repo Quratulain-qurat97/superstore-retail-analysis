@@ -256,7 +256,11 @@ Q8: Loss-Making States?
 
 Insight 8: 
 
-Central has the worst regional margin but only 2 loss-making states. Other regions have 3. Texas having revenue of $172K but losses –$25K with the profit margin of -14.83% and for Illinois the revenue is  $79.5K but losses -$12K with the profit margin of -15.11%. If we compare them with other Regions who have 3 states where we are losing profit like West and South that simply mean they are giving us the least profit they are not the only one affecting our profit. The business should conduct an urgent state-level discount audit, prioritizing Texas and Ohio which represent the largest absolute losses. Simply reducing discounting in these states could potentially recover tens of thousands in lost profit.
+Central has 2 loss-making states Texas having revenue of $172K but losses –$25K with profit margin of -14.83% and Illinois having the revenue of $79.5K but losses -$12K with profit margin of -15.11%.
+East also has 2 loss-making states Pennsylvania having revenue of $116K losing -$15K profit margin of -13.27% and Ohio generating the revenue of $78K but losses -$16K profit margin of -21.15%. 
+West has 3 loss-making states Arizona, Colorado and Oregon.
+South also has 3 loss-making states are Florida, North Carolina and Tennessee where profit margin is negative. 
+Loss-making states exist across all four regions, not just Central. The business should conduct an urgent state-level discount audit, prioritizing Texas and Ohio which represent the largest absolute losses. Simply reducing discounting in these states could potentially recover tens of thousands in lost profit.
 
  
 
