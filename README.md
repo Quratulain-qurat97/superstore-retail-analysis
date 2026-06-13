@@ -32,6 +32,7 @@ End-to-end retail analysis of 9,994 transactions from the Sample Superstore data
 - `superstore_analysis.sql` — 8 SQL queries with business analysis
 - `Sample - Superstore.csv` — raw dataset
 - `superstore_dashboard.pdf` — Power BI dashboard export.
+- `superstore_dashboard.pbix` — interactive Power BI dashboard file
 
   
 Q1: Regional Performance? 
