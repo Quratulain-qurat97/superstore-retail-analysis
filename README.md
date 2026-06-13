@@ -248,3 +248,36 @@ GROUP BY State,Region
 HAVING Profit_margin<0 
 
 ORDER BY  Total_revenue DESC; 
+
+# Superstore Retail Analysis
+
+## Project Overview
+End-to-end retail analysis of 9,994 transactions from the Sample Superstore dataset using MySQL for data analysis and Power BI for visualization. The project uncovers profitability drivers, discount impact, and loss-making states across 4 regions and 3 product categories.
+
+## Tools Used
+- MySQL — data extraction and analysis
+- Power BI — dashboard and visualization
+- Dataset: Sample Superstore (2014-2017)
+
+## Business Questions Answered
+1. Which region generates the highest revenue and profit?
+2. Which product category and sub-category is most and least profitable?
+3. Which customer segment drives the most sales?
+4. How does discounting affect profit?
+5. Who are the top 10 customers by revenue?
+6. What is the month over month sales trend?
+7. Which ship mode is most profitable?
+8. Which states are loss-making?
+
+## Key Findings
+- **West region** leads in both revenue ($720K) and profit margin (14.9%)
+- **Central region** has the worst profit margin (8%) despite being 3rd in revenue — likely due to excessive discounting
+- **Tables sub-category** generates $206K revenue but loses $17,725 — a critical margin problem
+- **Discounting destroys profit** — orders with no discount average $68 profit vs -$6 for discounted orders
+- **Sean Miller** is the top revenue customer at $25K but is unprofitable at -$1,980 loss
+- **10 states** are loss-making, with Texas losing the most in absolute dollars (-$25K)
+
+## Files
+- `superstore_analysis.sql` — 8 SQL queries with business analysis
+- `Sample - Superstore.csv` — raw dataset
+- `superstore_dashboard.pdf` — Power BI dashboard export
