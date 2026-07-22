@@ -1,6 +1,3 @@
-## superstore-retail-analysis
-SQL + Power BI analysis of Superstore retail data uncovering profitability drivers, discount impact, and loss-making states across 9,994 transactions.
-
 # Superstore Retail Analysis
 ## Project Overview
 End-to-end retail analysis of 9,994 transactions from the Sample Superstore dataset using MySQL for data analysis and Power BI for visualization. The project uncovers profitability drivers, discount impact, and loss-making states across 4 regions and 3 product categories
