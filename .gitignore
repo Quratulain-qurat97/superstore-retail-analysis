@@ -1,0 +1,16 @@
+
+# Dataset files - keep local, do not upload
+data/raw/*.csv
+data/processed/*.csv
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Operating system files
+.DS_Store
+Thumbs.db
