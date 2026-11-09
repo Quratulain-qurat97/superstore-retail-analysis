@@ -79,15 +79,16 @@ The SQL queries investigate:
 
 Additional validation queries check record counts, financial totals, discount distributions, invalid values, and database column types.
 
-## Dataset
+## Dataset Acknowledgements
 
-The Sample Superstore dataset is not included in this repository.
+The dataset used in this project was obtained from Kaggle,
+uploaded by [Vivek Chowdhury](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final).
 
-The Kaggle uploader from whom a copy was obtained identifies Tableau's Sample Superstore data as the original source.
+According to the uploader's acknowledgement, the dataset
+originates from Tableau's Sample Superstore data.
 
-- [Tableau Sample Superstore source](https://community.tableau.com/s/question/0D54T00000CWeX8SAL/sample-superstore-sales-excelxls)
-
-Please obtain the dataset from an authorized source and review its applicable terms before use.
+All credit for the original dataset belongs to its respective
+owners and creators.
 
 ## How to Run
 
@@ -133,12 +134,8 @@ sql/superstore_analysis_cleaned.sql
 
 ## Project Status
 
-<badge color="success">Python cleaning completed</badge> <badge color="success">SQL analysis prepared</badge>
+- Python data cleaning: Completed
+- SQL analysis: Prepared
+- Interactive React dashboard: In development
 
 The interactive dashboard is being developed separately as a React-based project.
-
-## Acknowledgements
-
-The original dataset is credited to its respective owners and creators. The Kaggle uploader identifies Tableau's Sample Superstore data as the source.
-
-The Python cleaning workflow, SQL queries, data validation, and analysis were developed as part of this educational and portfolio project.
