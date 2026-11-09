@@ -1,275 +1,144 @@
 # Superstore Retail Analysis
+
+An end-to-end retail data analytics project using **Python, MySQL, and SQL** to clean, validate, and analyze the Sample Superstore dataset.
+
 ## Project Overview
-End-to-end retail analysis of 9,994 transactions from the Sample Superstore dataset using MySQL for data analysis and Power BI for visualization. The project uncovers profitability drivers, discount impact, and loss-making states across 4 regions and 3 product categories
 
-## Key Findings
-- **West region** leads in both revenue ($720K) and profit margin (14.9%)
-- **Central region** has the worst profit margin (8%) despite being 3rd in revenue — likely due to excessive discounting
-- **Tables sub-category** generates $206K revenue but loses $17,725 — a critical margin problem
-- **Discounting destroys profit** — orders with no discount average $68 profit vs -$6 for discounted orders
-- **Sean Miller** is the top revenue customer at $25K but is unprofitable at -$1,980 loss
-- **10 states** are loss-making, with Texas losing the most in absolute dollars (-$25K).
-  
-## Tools Used
-- MySQL — data extraction and analysis
-- Power BI — dashboard and visualization
-- Dataset: Sample Superstore (2014-2017).
+This project explores retail sales, profitability, customer segments, regional performance, and shipping operations using the Sample Superstore dataset.
 
-## Business Questions Answered
-1. Which region generates the highest revenue and profit?
-2. Which product category and sub-category is most and least profitable?
-3. Which customer segment drives the most sales?
-4. How does discounting affect profit?
-5. Who are the top 10 customers by revenue?
-6. What is the month over month sales trend?
-7. Which ship mode is most profitable?
-8. Which states are loss-making?
+The workflow focuses on building a reproducible data preparation process, validating data quality, and using SQL to answer business-related questions.
 
-## Files
-- `superstore_analysis.sql` — 8 SQL queries with business analysis
-- `Sample - Superstore.csv` — raw dataset
-- `superstore_dashboard.pdf` — Power BI dashboard export.
-- `superstore_dashboard.pbix` — interactive Power BI dashboard file
+## Tools & Technologies
 
-  
-Q1: Regional Performance? 
+- **Python** – Data cleaning, transformation, and validation
+- **Pandas** – Data manipulation and analysis
+- **MySQL** – Database storage and querying
+- **SQL** – Business analysis and data validation
+- **Git & GitHub** – Version control and project documentation
 
-Insight 1 — Regional Performance: 
+## Project Structure
 
-The West region leads in both revenue ($720K) and profit ($107K) with the highest margin at 14.9%. The East follows closely at 13.5% margin. 
+```text
+superstore-retail-analysis/
+│
+├── data/
+│   ├── raw/
+│   │   └── README.md
+│   └── processed/
+│       └── README.md
+│
+├── python/
+│   └── data_cleaning.py
+│
+├── sql/
+│   └── superstore_analysis_cleaned.sql
+│
+├── README.md
+└── .gitignore
+```
 
-The Central region is the biggest concern — despite being the third highest in revenue at $502K, it has the worst profit margin at just 8.0%. It generates significant sales volume but converts very little of it into profit. This strongly suggests excessive discounting in the Central region. 
+## Data Preparation & Cleaning
 
-South has lower revenue than Central but a better margin at 11.93% — meaning it runs a more efficient operation. 
+The Python cleaning script performs the following tasks:
 
-Select Region, 
+- Loads the original dataset.
+- Converts order and shipping dates into proper datetime formats.
+- Inspects missing values and duplicate records.
+- Validates unique identifiers.
+- Checks numeric and categorical fields.
+- Standardizes postal codes.
+- Performs final data quality checks.
+- Exports the cleaned dataset as a CSV file.
 
-ROUND(SUM(sales),2) as Total_revenue, 
+### Data Validation Results
 
-ROUND(SUM(Profit),2) as Total_profit, 
+| Validation | Result |
+|---|---:|
+| Total records | 9,994 |
+| Total columns | 21 |
+| Unique Row IDs | 9,994 |
+| Missing values | 0 |
+| Duplicate rows | 0 |
+| Total Sales | $2,297,200.86 |
+| Total Profit | $286,397.02 |
 
-ROUND(SUM(Profit)/SUM(sales)*100,2) as Profit_margin 
+## SQL Analysis
 
-From sample_superstore 
+The cleaned dataset is loaded into MySQL for further analysis.
 
-Group by Region 
+The SQL queries investigate:
 
-Order by Total_revenue desc; 
+1. Regional sales performance
+2. Category and sub-category profitability
+3. Customer segment performance
+4. Discount impact on sales and profit
+5. Top 10 customers by revenue
+6. Monthly sales trends and month-over-month changes
+7. Shipping mode performance
+8. Loss-making states
 
- 
+Additional validation queries check record counts, financial totals, discount distributions, invalid values, and database column types.
 
- 
+## Dataset
 
- 
+The Sample Superstore dataset is not included in this repository.
 
-Q2: Category & Sub-Category Profitability? 
+The Kaggle uploader from whom a copy was obtained identifies Tableau's Sample Superstore data as the original source.
 
-Insight 2: 
+- [Tableau Sample Superstore source](https://community.tableau.com/s/question/0D54T00000CWeX8SAL/sample-superstore-sales-excelxls)
 
-Three sub-categories are running at a loss — Tables (-8.56%), Bookcases (-3.02%), and Supplies (-2.93%). Tables is the most concerning — it generates $206K in revenue but loses $17,725, meaning every Table sold destroys value. The business should urgently review pricing and discount strategy for these sub-categories. Labels, Envelopes, and Paper are the most profitable sub-categories with margins above 37%. 
+Please obtain the dataset from an authorized source and review its applicable terms before use.
 
- 
+## How to Run
 
-SELECT Category,  
+### 1. Clone the repository
 
-       `Sub-Category`,  
+```bash
+git clone https://github.com/Quratulain-qurat97/superstore-retail-analysis.git
+```
 
-       ROUND(SUM(Sales), 2) AS Total_Sales, 
+### 2. Install the required Python library
 
-       ROUND(SUM(Profit), 2) AS Total_Profit, 
+```bash
+pip install pandas
+```
 
-       ROUND(SUM(Profit)/SUM(sales)*100,2) as Profit_margin 
+### 3. Obtain the dataset
 
-FROM sample_superstore 
+Place the original CSV file in:
 
-GROUP BY Category, `Sub-Category` 
+```text
+data/raw/Sample - Superstore.csv
+```
 
-ORDER BY Profit_margin desc; 
+### 4. Run the Python cleaning script
 
- 
+```bash
+python python/data_cleaning.py
+```
 
- 
+The cleaned dataset will be generated in:
 
- 
+```text
+data/processed/Superstore_Cleaned.csv
+```
 
-Q3: Customer Segment Analysis? 
+### 5. Run the SQL analysis
 
-Insight 3 — Customer Segment Analysis: 
+Import the cleaned CSV into MySQL, configure the database and table names to match the SQL script, and execute the queries in:
 
-The Consumer segment drives the most revenue at $1.16M but has the weakest profit margin at 11.61% — suggesting this segment is being over-discounted to drive volume. Corporate and Home Office both achieve better margins at 13% and 13.88% respectively, despite lower revenue. Home Office in particular is the most efficient segment — smallest revenue but highest margin. The business should investigate whether Consumer segment discounting is necessary or whether margins can be improved without losing volume. Corporate represents the best balance of revenue and profitability and should be prioritized for growth. 
+```text
+sql/superstore_analysis_cleaned.sql
+```
 
- 
+## Project Status
 
-SELECT Segment, 
+<badge color="success">Python cleaning completed</badge> <badge color="success">SQL analysis prepared</badge>
 
- ROUND(SUM(Sales), 2) AS Total_Revenue, 
+The interactive dashboard is being developed separately as a React-based project.
 
- ROUND(SUM(Profit), 2) AS Total_Profit, 
+## Acknowledgements
 
- ROUND((SUM(Profit) / SUM(Sales)) * 100, 2) AS Profit_Margin 
+The original dataset is credited to its respective owners and creators. The Kaggle uploader identifies Tableau's Sample Superstore data as the source.
 
-FROM sample_superstore 
-
-GROUP BY Segment 
-
-ORDER BY Profit_Margin DESC; 
-
- 
-
- 
-
- 
-
-Q4: Discount Impact on Profit? 
-
-Insight 4: 
-
-Discounting is destroying profit. Orders with no discount average $68 profit per order. Orders with any discount average a loss of -$5.90 per order — a swing of nearly $74 per order. Despite similar average sales values ($230 vs $228), discounted orders consistently lose money. The business should critically review its discounting strategy — particularly in the Central region and for Tables and Bookcases sub-categories where we already identified margin problems. 
-
- 
-
-Select  
-
-CASE 
-
-WHEN Discount =0 THEN 'NO DISCOUNT'  
-
-WHEN DISCOUNT>0 THEN 'HAS DISCOUNT' 
-
-END AS Discount_Tier, 
-
-COUNT(*) AS num_orders, 
-
-ROUND(AVG(sales),2) AS avg_sales, 
-
-ROUND(AVG(Profit),2) AS avg_profit 
-
-FROM sample_superstore 
-
-GROUP BY Discount_Tier 
-
-ORDER BY avg_profit DESC; 
-
- 
-
- 
-
- 
-
-Q5: Top 10 Customers? 
-
-Insight 5: 
-
-The top 10 customers by revenue reveal a critical finding — Sean Miller, the highest revenue customer at $25,043, is actually unprofitable with a -$1,980 loss and -7.91% margin. The business is losing money on its biggest customer, almost certainly due to excessive discounting. Tamara Chand and Raymond Buch are the most valuable customers when combining revenue and profitability with margins above 46%. Ken Lonsdale also shows a dangerously thin 5.49% margin despite $14K in revenue. 
-
- 
-
-SELECT `Customer ID`, 
-
-`Customer Name`, 
-
-       ROUND(SUM(Sales), 2) AS Revenue, 
-
-       ROUND(SUM(Profit), 2) AS Profit, 
-
-       ROUND(SUM(Profit)/SUM(sales)*100,2) as Profit_Margin 
-
-FROM sample_superstore 
-
-GROUP BY `Customer ID`,`Customer Name` 
-
-ORDER BY Revenue DESC LIMIT 10; 
-
- 
-
- 
-
- 
-
-Q6: Month over Month Sales Trend? 
-
- Insight 6: 
-
-Sales show strong seasonality with significant spikes in March and September each year, and notable drops in February and October. The month over month analysis reveals sales are highly inconsistent — swings of $50,000+ between consecutive months suggest either seasonal demand patterns or irregular bulk ordering behavior. The business should investigate whether these spikes correlate with promotions or specific customer orders. 
-
- 
-
-WITH revenue_permonth AS ( 
-
-    SELECT DATE_FORMAT(STR_TO_DATE(`Order Date`, '%m/%d/%Y'), '%Y-%m') AS monthly, 
-
-    ROUND(SUM(sales), 2) AS sales_monthly 
-
-    FROM sample_superstore 
-
-    GROUP BY monthly 
-
-    ORDER BY monthly ASC 
-
-) 
-
-SELECT monthly, sales_monthly, 
-
-LAG(sales_monthly, 1) OVER(ORDER BY monthly) AS prev_sales, 
-
-ROUND(sales_monthly - LAG(sales_monthly, 1) OVER(ORDER BY monthly), 2) AS mom_change 
-
-FROM revenue_permonth; 
-
- 
-
- 
-
-Q7: Ship Mode Analysis? 
-
-Insight 7:
-
-Shipping mode has minimal impact on profit margin — all four modes fall between 12.1% and 13.8%. First Class has the best margin (13.8%) because those customers are less price-sensitive and receive fewer discounts (avg 0.25 vs 0.45+ for others). Since shipping mode is not a major profit driver, the business should focus on higher-impact issues — discounting in loss-making sub-categories and the Central region.
- 
-
-SELECT `Ship Mode`, 
-
-COUNT(`Ship Mode`) AS shipmode_count, 
-
-ROUND(AVG(Discount),2) AS avg_discount, 
-
-ROUND(SUM(sales),2) AS Total_revenue, 
-
-ROUND(SUM(Profit),2) AS Total_profit, 
-
-ROUND(SUM(Profit)/SUM(sales)*100,2) AS Profit_margin 
-
-FROM sample_superstore 
-
-GROUP BY `Ship Mode` 
-
-ORDER BY shipmode_count DESC; 
-
- 
-
- 
-
-Q8: Loss-Making States? 
-
-Insight 8: 
-
-Loss-making states are spread across all four regions — not just Central as initially suspected. 10 states have negative profit margins, with Ohio (-21.15%) and Texas (-14.83%) being the most severe. Texas is the biggest absolute problem, generating $172K in revenue but losing $25K. Central has only 2 loss-making states while West and South each have 3. The business should conduct an urgent state-level discount audit, prioritizing Texas and Ohio which represent the largest absolute losses. Reducing discounting in these states could potentially recover tens of thousands in lost profit.
-
- 
-
-SELECT State,Region, 
-
-ROUND(SUM(sales),2) AS Total_revenue, 
-
-ROUND(SUM(Profit),2) AS Total_profit, 
-
-ROUND(SUM(Profit)/ SUM(sales)*100,2) AS Profit_margin 
-
-FROM sample_superstore 
-
-GROUP BY State,Region 
-
-HAVING Profit_margin<0 
-
-ORDER BY  Total_revenue DESC; 
-
+The Python cleaning workflow, SQL queries, data validation, and analysis were developed as part of this educational and portfolio project.
